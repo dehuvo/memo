@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="panel panel-warning" *ngIf="errorMessage">
+    <div class="panel-body">
+      <b class="text-warning">{{errorMessage}}</b>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group">
+          <label> 글쓴이:&nbsp;
+            <input type="text" class="form-control" required
+                   name="writer" [ngModel]="f.value.writer">
+          </label>&nbsp;
+          <button type="submit" class="btn btn-sm glyphicon glyphicon-plus"
+            [disabled]="f.invalid"></button>
+          <br>
+          <textarea rows="5" cols="38" class="form-control" required
+                    name="content" [ngModel]="f.value.content"
+             placeholder="여기에 메모를 쓰십시오."></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div *ngFor="let memo of memos" class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="badge">{{memo.id}}</span> &nbsp; {{memo.writer}} &nbsp;
+          <small>{{memo.date | date:"yy-MM-dd HH:mm"}}</small>
+          <span class="pull-right">
+            <a href="#" class="text-warning" (click)="removeMemo(memo.id)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+          </span>
+        </div>
+        <div class="panel-body">
+          <pre>{{memo.content}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
