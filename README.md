@@ -24,7 +24,7 @@ ng serve -o
 ```
 ng build memo --prod
 cd dist
-http-server -o
+http-server -o http://localhost:8080
 ```
 
 ## Development server
